@@ -3,21 +3,20 @@
 //Llamado a API Publica educ.ar 
 function getRecurso($term) {   
  
-$infografia_url = 'https://api.educ.ar/0.9/recursos/infografias/';
-$secuencia_url = 'https://api.educ.ar/0.9/recursos/infografias/';
-$api_key = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';  //key
+    $infografia_url = 'https://api.educ.ar/0.9/recursos/infografias/';
+    $secuencia_url = 'https://api.educ.ar/0.9/recursos/infografias/';
+    $api_key = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';  //key
 
-$params = array('key'=>$api_key,
-              'texto'=>$term,
-              'limit'=>1,
-              'sort_mode'=>'asc');
+    $params = array('key'=>$api_key,
+                  'texto'=>$term,
+                  'limit'=>1,
+                  'sort_mode'=>'asc');
 
     $decoded = json_decode(request($infografia_url.'?'.http_build_query($params)));
     
     if ($decoded->result->totalFound < 1)
         $decoded = json_decode(request($secuencia_url.'?'.http_build_query($params)));
-   
-                 
+                    
     if (isset($decoded->response->status) && $decoded->response->status == 'ERROR') {
         die('Ocurrió un error: ' . $decoded->response->errormessage);
     }
@@ -66,9 +65,6 @@ function sanitize($qry) {
     return $return;
 }
 
-function pluralize ($yrs) {
-    if ($yrs>1) return 'años';  else return 'año';
-}
 
 function getUrlCtx() {
 

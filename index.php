@@ -3,7 +3,8 @@ require 'apieducar.inc.php';
 
 $term=filter_input(INPUT_GET, 'qry', FILTER_SANITIZE_STRING);
 
-if (!empty ($term)) {
+
+if (!empty($term)) {
 
     //Examino el término por la existencia de un espacio, en dicho caso lo
     //redirijo al subsistema que determinará el URL único y correcto para un sujeto
@@ -18,11 +19,12 @@ if (!empty ($term)) {
 
    $response = getRecurso($term);
    $data=$response->result->data[0];
+   
 } 
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -55,7 +57,7 @@ if (!empty ($term)) {
 -->
 
 <iframe frameborder="0" scrolling="no" width="800" height="400"
-        src="http://www.educ.ar/Dinamico/UnidadHtml/obtenerSitio?rec_id=<?php echo $data->id ?>" id="imgbox">
+        src="http://www.educ.ar/Dinamico/UnidadHtml/obtenerSitio?rec_id=<?php echo $data->id ?>" id="resultado">
    <p>iframes no soportados :'(</p>
 </iframe>
 
